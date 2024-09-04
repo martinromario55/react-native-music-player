@@ -6,34 +6,30 @@ import { defaultStyles } from '@/styles'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
+import { Track, useActiveTrack } from 'react-native-track-player'
 // import LoaderKit from 'react-native-loader-kit'
 // import { Track, useActiveTrack, useIsPlaying } from 'react-native-track-player'
 
 export type TracksListItemProps = {
-	track: { title: string; image?: string; artist?: string }
-	// track: Track
-	// onTrackSelect: (track: { title: string; image?: string; artist?: string }) => void
+	track: Track
+	onTrackSelect: (track: Track) => void
 }
 
 export const TracksListItem = ({
 	track,
-	// onTrackSelect: handleTrackSelect,
+	onTrackSelect: handleTrackSelect,
 }: TracksListItemProps) => {
 	// const { playing } = useIsPlaying()
 
-	// const isActiveTrack = useActiveTrack()?.url === track.url
-	const isActiveTrack = false
-
+	const isActiveTrack = useActiveTrack()?.url === track.url
 	return (
-		<TouchableHighlight
-		// onPress={() => handleTrackSelect(track)}
-		>
+		<TouchableHighlight onPress={() => handleTrackSelect(track)}>
 			<View style={styles.trackItemContainer}>
 				<View>
 					<FastImage
 						source={{
-							uri: track.image ?? unknownTrackImageUri,
-							// uri: track.artwork ?? unknownTrackImageUri,
+							// uri: track.image ?? unknownTrackImageUri,
+							uri: track.artwork ?? unknownTrackImageUri,
 							priority: FastImage.priority.normal,
 						}}
 						style={{
@@ -87,9 +83,9 @@ export const TracksListItem = ({
 					</View>
 
 					{/* <StopPropagation>
-						<TrackShortcutsMenu track={track}>
-							<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
-						</TrackShortcutsMenu>
+						<TrackShortcutsMenu track={track}> */}
+					<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
+					{/* </TrackShortcutsMenu>
 					</StopPropagation> */}
 				</View>
 			</View>
