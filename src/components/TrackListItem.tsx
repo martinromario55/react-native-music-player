@@ -6,9 +6,8 @@ import { defaultStyles } from '@/styles'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
-import { Track, useActiveTrack } from 'react-native-track-player'
-// import LoaderKit from 'react-native-loader-kit'
-// import { Track, useActiveTrack, useIsPlaying } from 'react-native-track-player'
+import { Track, useActiveTrack, useIsPlaying } from 'react-native-track-player'
+import LoaderKit from 'react-native-loader-kit'
 
 export type TracksListItemProps = {
 	track: Track
@@ -19,7 +18,7 @@ export const TracksListItem = ({
 	track,
 	onTrackSelect: handleTrackSelect,
 }: TracksListItemProps) => {
-	// const { playing } = useIsPlaying()
+	const { playing } = useIsPlaying()
 
 	const isActiveTrack = useActiveTrack()?.url === track.url
 	return (
@@ -38,7 +37,7 @@ export const TracksListItem = ({
 						}}
 					/>
 
-					{/* {isActiveTrack &&
+					{isActiveTrack &&
 						(playing ? (
 							<LoaderKit
 								style={styles.trackPlayingIconIndicator}
@@ -52,7 +51,7 @@ export const TracksListItem = ({
 								size={24}
 								color={colors.icon}
 							/>
-						))} */}
+						))}
 				</View>
 
 				<View
