@@ -13,7 +13,19 @@ type PlayerButtonProps = {
 	iconSize: number
 }
 
-export const PlayPauseButton = ({ style, iconSize }: PlayerButtonProps) => {
+export const PlayerControls = ({ style }: PlayerControlsProps) => {
+	return (
+		<View style={[styles.container, style]}>
+			<View style={styles.row}>
+				<SkipToPreviousButton />
+				<PlayPauseButton />
+				<SkipToNextButton />
+			</View>
+		</View>
+	)
+}
+
+export const PlayPauseButton = ({ style, iconSize = 48 }: PlayerButtonProps) => {
 	const { playing } = useIsPlaying()
 	return (
 		<View style={[{ height: iconSize }, style]}>
